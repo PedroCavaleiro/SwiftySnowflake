@@ -15,6 +15,7 @@ public class Snowflake {
         self.machineId = machineId
         self.sequence = sequence
         self.configuration = configuration
+        decodeSnowflake(snowflakeId)
     }
     
     init(_ snowflakeId: String, configuration: Configuration = Configuration(), timestamp: Int64 = 0, machineId: Int = 0, sequence: Int = 0) {
@@ -23,6 +24,7 @@ public class Snowflake {
         self.machineId = machineId
         self.sequence = sequence
         self.configuration = configuration
+        decodeSnowflake(Int64(snowflakeId) ?? 0)
     }
     
     public let snowflakeId: Int64
