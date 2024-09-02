@@ -8,7 +8,7 @@
 import Foundation
 
 extension Date {
-    func toLocalTime() -> Date {
+    public func toLocalTime() -> Date {
         let timezoneOffset = TimeInterval(TimeZone.current.secondsFromGMT(for: self))
         return addingTimeInterval(timezoneOffset)
     }

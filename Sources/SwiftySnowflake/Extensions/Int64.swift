@@ -8,7 +8,7 @@
 import Foundation
 
 extension Int64 {
-    func toSnowflake(configuration: Configuration = Configuration()) -> Snowflake {
+    public func toSnowflake(configuration: Configuration = Configuration()) -> Snowflake {
         Snowflake(self, configuration: configuration)
     }
 }
