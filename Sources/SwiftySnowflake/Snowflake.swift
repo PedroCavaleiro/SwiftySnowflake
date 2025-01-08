@@ -69,7 +69,7 @@ public class Snowflake {
     ///
     /// - Parameter snowflake: The snowflake ID to decode.
     private func decodeSnowflake(_ snowflake: Int64) {
-        timestamp = (snowflake >> shiftTime) & maskTime
+        timestamp = (snowflake >> shiftTime) + configuration.epoch
         machineId = Int((snowflake >> Configuration.machineSequenceBits) & maskGenerator)
         sequence = Int(snowflake & maskSequence)
     }
