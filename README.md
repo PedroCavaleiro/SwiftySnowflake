@@ -61,7 +61,7 @@ No matter if you want to use the default configuration or a custom one, to gener
 let newSnowflakeId = SwiftySnowflake.shared.generateSnowflake()
 ```
 
-If you fee the method is too long you can always declare a global method in your project to shorten that call, for example
+If you feel the method is too long you can always declare a global method in your project to shorten that call, for example
 ```swift
 func GenerateSnowflake() -> Int64 {
     return SwiftySnowflake.shared.generateSnowflake()
