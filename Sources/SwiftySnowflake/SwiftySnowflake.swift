@@ -14,8 +14,11 @@ public class SwiftySnowflake {
     private let shiftTime = 10 + 12
     private let shiftGenerator = 12
     
-    private var configuration: Configuration
+    public private(set) var configuration: Configuration
     
+    /// Configures the shared SwiftySnowflake instance with the provided configuration.
+    ///
+    /// - Parameter configuration: The configuration to set for the shared SwiftySnowflake instance.
     public static func configure(configuration: Configuration) {
         SwiftySnowflake.shared.configuration = configuration
     }
