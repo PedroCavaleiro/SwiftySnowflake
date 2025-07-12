@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by Pedro Cavaleiro on 02/09/2024.
 //
@@ -69,7 +69,8 @@ public class Snowflake {
     ///
     /// - Parameter snowflake: The snowflake ID to decode.
     private func decodeSnowflake(_ snowflake: Int64) {
-        timestamp = (snowflake >> shiftTime) + configuration.epoch
+        let extractedTimestamp = (snowflake >> shiftTime)
+        timestamp = extractedTimestamp // This is milliseconds since custom epoch
         machineId = Int((snowflake >> Configuration.machineSequenceBits) & maskGenerator)
         sequence = Int(snowflake & maskSequence)
     }
@@ -79,8 +80,8 @@ public class Snowflake {
     /// - Parameter timestamp: The timestamp to convert.
     /// - Returns: A `Date` object representing the timestamp.
     private func timestampToDateTime(_ timestamp: Int64) -> Date {
-        let epoch = Date(timeIntervalSince1970: TimeInterval(configuration.epoch) / 1000)
-        let dateTime = epoch.addingTimeInterval(TimeInterval(timestamp) / 1000)
+        let msSince1970 = configuration.epoch + timestamp
+        let dateTime = Date(timeIntervalSince1970: TimeInterval(msSince1970) / 1000)
         return configuration.alwaysUseUtc ? dateTime : dateTime.toLocalTime()
     }
     
