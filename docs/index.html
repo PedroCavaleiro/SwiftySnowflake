@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Index  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a title="Index  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html"> Docs</a> (100% documented)</p>
+        <div class="header-right">
+          <form role="search" action="search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </div>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html">Index</a>
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/Configuration.html">Configuration</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Snowflake.html">Snowflake</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/SwiftySnowflake.html">SwiftySnowflake</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Extensions/Date.html">Date</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/Int64.html">Int64</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/String.html">String</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            
+            <h1 id='swiftysnowflake' class='heading'>SwiftySnowflake</h1>
+
+<p>A simple library for Swift to handle Snowflake IDs</p>
+<h2 id='table-of-contents' class='heading'>Table of Contents</h2>
+
+<ul>
+<li><a href="#configuration">Configuration</a>
+
+<ul>
+<li><a href="#using-default-configuration">Using default configuration</a></li>
+<li><a href="#using-custom-configuration">Using custom configuration</a></li>
+<li><a href="#configuration-object">Configuration Object</a></li>
+</ul></li>
+<li><a href="#usage">Usage</a>
+
+<ul>
+<li><a href="#generating-a-new-snowflake">Generating a new snowflake</a></li>
+<li><a href="#parsing-a-snowflake">Parsing a Snowflake</a></li>
+</ul></li>
+<li><a href="#snowflake-object">Snowflake Object</a></li>
+</ul>
+<h2 id='configuration' class='heading'>Configuration</h2>
+<h3 id='using-default-configuration' class='heading'>Using default configuration</h3>
+
+<p>It&rsquo;s possible to the defaults, no need to call any method or initialize any class for this purpose.</p>
+<h3 id='using-custom-configuration' class='heading'>Using custom configuration</h3>
+
+<p>You can also configure the Snowflake ID with your own parameters (Epoch, Worker ID and if the snowflake is in UTC) for this follow the following steps:</p>
+
+<ol>
+<li><p>Set the configuration (<a href="#configuration-object">see here</a>) object </p>
+<pre class="highlight swift"><code><span class="kd">fileprivate</span> <span class="k">let</span> <span class="nv">dateComponents</span> <span class="o">=</span> <span class="kt">DateComponents</span><span class="p">(</span><span class="nv">calendar</span><span class="p">:</span> <span class="kt">Calendar</span><span class="o">.</span><span class="n">current</span><span class="p">,</span> <span class="nv">year</span><span class="p">:</span> <span class="mi">2024</span><span class="p">,</span> <span class="nv">month</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="nv">day</span><span class="p">:</span> <span class="mi">19</span><span class="p">,</span> <span class="nv">hour</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">minute</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">second</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">snowflakeConfiguration</span> <span class="o">=</span> <span class="kt">Configuration</span><span class="p">(</span><span class="nv">epoch</span><span class="p">:</span> <span class="n">dateComponents</span><span class="o">.</span><span class="n">date</span> <span class="p">??</span> <span class="kt">Date</span><span class="p">(),</span> <span class="nv">workedId</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">alwaysUseUtc</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+</code></pre></li>
+<li><p>In your AppDelegate.swift or projectApp.swift configure the SwiftySnowflake, this doesn&rsquo;t need to be upon startup but it&rsquo;s recommended</p>
+<pre class="highlight swift"><code><span class="kt">SwiftySnowflake</span><span class="o">.</span><span class="nf">configure</span><span class="p">(</span><span class="nv">configuration</span><span class="p">:</span> <span class="n">snowflakeConfiguration</span><span class="p">)</span> <span class="c1">// the configuration in the step 1.</span>
+</code></pre></li>
+</ol>
+<h3 id='configuration-object' class='heading'>Configuration Object</h3>
+
+<p>The configuration object can be initialized using a Int64 for the epoch or a Date object, the example provided <a href="#using-custom-configuration">here</a> describes how to use the initialization with date object</p>
+
+<ul>
+<li>Using Int64 as epoch</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>epoch</code></td>
+<td><code>Int64</code></td>
+<td>no</td>
+<td><code>1275350400000</code></td>
+<td>Epoch TimeStamp (in milliseconds) to start generating the Snowflakes</td>
+</tr>
+<tr>
+<td><code>workerId</code></td>
+<td><code>Int</code></td>
+<td>no</td>
+<td><code>1</code></td>
+<td>Worker ID that is going to generate the Snowflakes</td>
+</tr>
+<tr>
+<td><code>alwaysUseUtc</code></td>
+<td><code>Bool</code></td>
+<td>no</td>
+<td><code>true</code></td>
+<td>Generates the timestamps in UTC (recommended)</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>Using Date as epoch</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>epoch</code></td>
+<td><code>Date</code></td>
+<td>yes</td>
+<td></td>
+<td>Date where the Worker ID should start generating timestamps for the Snowflakes</td>
+</tr>
+<tr>
+<td><code>workerId</code></td>
+<td><code>Int</code></td>
+<td>no</td>
+<td><code>1</code></td>
+<td>Worker ID that is going to generate the Snowflakes</td>
+</tr>
+<tr>
+<td><code>alwaysUseUtc</code></td>
+<td><code>Bool</code></td>
+<td>no</td>
+<td><code>true</code></td>
+<td>Generates the timestamps in UTC (recommended)</td>
+</tr>
+</tbody></table>
+<h2 id='usage' class='heading'>Usage</h2>
+<h3 id='generating-a-new-snowflake' class='heading'>Generating a new snowflake</h3>
+
+<p>No matter if you want to use the default configuration or a custom one, to generate a Snowflake ID you just need to call the following function. If called before the <code>.configuration()</code> method is called the default values will be used</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">newSnowflakeId</span> <span class="o">=</span> <span class="kt">SwiftySnowflake</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">generateSnowflake</span><span class="p">()</span>
+</code></pre>
+
+<p>If you feel the method is too long you can always declare a global method in your project to shorten that call, for example</p>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="kt">GenerateSnowflake</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Int64</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kt">SwiftySnowflake</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">generateSnowflake</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre>
+<h3 id='parsing-a-snowflake' class='heading'>Parsing a Snowflake</h3>
+
+<p>SwiftySnowflake includes a extension to parse a Snowflake ID from a <code>String</code> or <code>Int64</code> with minimal effort. The example below is applied in a <code>Int64</code> but the same method is available for <code>String</code>.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">snowflake</span> <span class="o">=</span> <span class="mi">61574699733221376</span><span class="o">.</span><span class="nf">toSnowflake</span><span class="p">()</span>                              <span class="c1">// using the configuration in SwiftySnowflake.shared</span>
+<span class="k">let</span> <span class="nv">snowflake</span> <span class="o">=</span> <span class="mi">61574699733221376</span><span class="o">.</span><span class="nf">toSnowflake</span><span class="p">(</span><span class="nv">useGlobalConfiguration</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span> <span class="c1">// using the default Configuration</span>
+<span class="k">let</span> <span class="nv">snowflake</span> <span class="o">=</span> <span class="mi">61574699733221376</span><span class="o">.</span><span class="nf">toSnowflake</span><span class="p">(</span><span class="n">yourConfiguration</span><span class="p">)</span>             <span class="c1">// if you want to use a custom configuration for this snowflake </span>
+</code></pre>
+<h2 id='snowflake-object' class='heading'>Snowflake Object</h2>
+
+<p>This object contains:</p>
+
+<ul>
+<li>Timestamp: When the Snowflake ID was generated</li>
+<li>Machine ID: The machine that generated this Snowflake ID</li>
+<li>Sequence</li>
+</ul>
+
+<p>It&rsquo;s possible to update it&rsquo;s configuration (in case it was parsed with wrongfully configuration) by calling <code>.updateConfiguration(_ configuration: Configuration)</code></p>
+
+<p>To get the <code>Date</code> object for when it was created just access the computed variable <code>time</code></p>
+
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2025 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2025-07-23)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</html>

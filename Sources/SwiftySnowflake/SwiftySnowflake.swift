@@ -3,6 +3,8 @@
 
 import Foundation
 
+/// A class that generates unique identifiers (Snowflakes) based on Twitter's Snowflake algorithm.
+/// - Parameter configuration: The configuration for the Snowflake generator.
 public class SwiftySnowflake {
     
     public static let shared = SwiftySnowflake()
