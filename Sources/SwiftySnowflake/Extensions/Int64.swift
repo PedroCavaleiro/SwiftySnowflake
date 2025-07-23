@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Int64 extensions
 extension Int64 {
     
     /// Converts the current object to a Snowflake instance using the provided configuration.

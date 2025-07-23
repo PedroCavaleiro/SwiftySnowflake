@@ -7,11 +7,16 @@
 
 import Foundation
 
+/// A class representing a Snowflake ID object.
 public class Snowflake {
     
+    /// The unique identifier for the Snowflake instance.
     public let snowflakeId: Int64
+    /// The timestamp associated with the Snowflake ID.
     public var timestamp: Int64
+    /// The machine ID that generated the Snowflake ID.
     public var machineId: Int
+    /// The sequence number for the Snowflake ID.
     public var sequence: Int
     
     fileprivate var configuration: Configuration

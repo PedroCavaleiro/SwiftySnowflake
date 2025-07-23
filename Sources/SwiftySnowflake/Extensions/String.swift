@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// String extensions
 extension String {
     
     /// Converts the current object to a Snowflake instance using the provided configuration.

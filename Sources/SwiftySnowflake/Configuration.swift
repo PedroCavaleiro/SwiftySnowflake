@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Configuration for the Snowflake generator
 public class Configuration {
 
     public let workedId: Int
